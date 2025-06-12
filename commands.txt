@@ -1,0 +1,169 @@
+##### Follow Paper #####
+
+----------ACT----------
+# training
+
+## 1. pen click
+python3 imitate_episodes.py \
+--task_name rby1_click_pen_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act/rby1_pen_click \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--temporal_agg \
+--ft 0
+
+## 2. heavylight
+python3 imitate_episodes.py \
+--task_name rby1_heavylight_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act/rby1_heavylight \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 25 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 0
+
+# inference
+
+## 1. pen click
+python3 inference.py \
+--task_name rby1_click_pen_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act/rby1_pen_click \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 0
+
+## 2. heavylight
+python3 inference.py \
+--task_name rby1_heavylight_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act/rby1_heavylight \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 25 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 0
+
+----------ACT + FT----------
+# training
+
+## 1. pen click
+python3 imitate_episodes.py \
+--task_name rby1_click_pen_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft/rby1_pen_click \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--temporal_agg \
+--ft 1
+
+## 2. heavylight
+python3 imitate_episodes.py \
+--task_name rby1_heavylight_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft/rby1_heavylight \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 25 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 1
+
+# inference
+
+## 1. pen click
+python3 inference.py \
+--task_name rby1_click_pen_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft/rby1_pen_click \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 1
+
+## 2. heavylight
+python3 inference.py \
+--task_name rby1_heavylight_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft/rby1_heavylight \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 25 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 10000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 1
+
+----------ACT + FT + responsive TE----------
+# training
+
+## 1. box pulling
+
+python3 imitate_episodes.py \
+--task_name rby1_box_pulling_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft/rby1_box_pulling \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 50000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 1
+
+## 2. box pulling rightarm
+
+python3 imitate_episodes.py \
+--task_name rby1_box_pulling_right_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft/rby1_box_pulling_right \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 50000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 1 \
+--noleftcam 1
+
+# inference
+
+## 1. box pulling
+
+python3 inference_singlearm.py \
+--task_name rby1_box_pulling_aftergrip2_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft_softmax/rby1_box_pulling_aftergrip2 \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 50 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 40000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 1 \
+--resp_te 1 \
+--filtering 1 \
+--noleftcam 1 \
+--ft_softmax 1
+
+## 2. box pulling rightarm
+
+python3 inference.py \
+--task_name rby1_box_pulling_ft \
+--ckpt_dir /home/rby1/ACT_w_FTSensor_RBY1/results/ckpt_collections/act_with_ft/rby1_box_pulling_right \
+--policy_class ACT \
+--kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
+--num_epochs 50000  --lr 1e-5 --seed 0 \
+--state_dim 16 \
+--eval_every 5000 \
+--temporal_agg \
+--ft 1 \
+--resp_te 1 \
+--filtering 1 \
+--noleftcam 1
+
